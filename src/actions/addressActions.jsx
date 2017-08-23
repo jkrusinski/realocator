@@ -34,7 +34,7 @@ const queryGooglePlaces = search => axios({
   method: 'get',
   url: 'http://localhost:3000/api/address',
   params: { search },
-}).then(res => res.data.results);
+}).then(res => res.data.predictions);
 
 // position must be 'first' or 'second'
 const makeRequest = (position, query, dispatch, getState) => {

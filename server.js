@@ -8,15 +8,14 @@ const app = express();
 app.use('/public', express.static(path.join(__dirname, 'src/public')));
 
 app.get('/api/address', (req, res, next) => {
-  const query = req.query.search;
+  const input = req.query.search;
   const options = {
     method: 'get',
-    url: 'https://maps.googleapis.com/maps/api/place/textsearch/json',
+    url: 'https://maps.googleapis.com/maps/api/place/autocomplete/json',
     params: {
       key: GOOGLE_API_KEY,
       location: '30.2672,-97.7431',
-      radius: '50000',
-      query,
+      input,
     },
   };
 
