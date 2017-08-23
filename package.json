@@ -20,7 +20,9 @@
   },
   "homepage": "https://github.com/jkrusinski/realocator#readme",
   "dependencies": {
-    "express": "^4.15.4"
+    "express": "^4.15.4",
+    "react": "^15.6.1",
+    "react-dom": "^15.6.1"
   },
   "devDependencies": {
     "babel-core": "^6.26.0",
