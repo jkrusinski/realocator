@@ -1,7 +1,7 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Address = ({ queries, suggestions, clearAddress, queryAddress }) => (
+const Address = ({ queries, suggestions, queryAddress }) => (
   <form>
     <input type="text" value={queries[0]} onChange={e => queryAddress(e.target.value, null)} />
     <input type="text" value={queries[1]} onChange={e => queryAddress(null, e.target.value)} />
@@ -18,7 +18,6 @@ const Address = ({ queries, suggestions, clearAddress, queryAddress }) => (
 Address.propTypes = {
   queries: PropTypes.arrayOf(PropTypes.string).isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.array).isRequired,
-  clearAddress: PropTypes.func.isRequired,
   queryAddress: PropTypes.func.isRequired,
 };
 

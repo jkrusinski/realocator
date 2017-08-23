@@ -1,4 +1,3 @@
-import { combineReducers } from 'redux';
 import {
   UPDATE_ADDRESS_QUERY,
   UPDATE_ADDRESS_SUGGESTIONS,
