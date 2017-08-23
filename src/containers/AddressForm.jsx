@@ -1,16 +1,16 @@
 import { connect } from 'react-redux';
-import { updateFirstAddress, updateSecondAddress } from '../actions';
+import { clearAddress, queryAddress } from '../actions';
 
 import Address from '../components/Address';
 
 const mapStateToProps = ({ addresses: { first, second } }) => ({
-  firstAddress: first,
-  secondAddress: second,
+  queries: [first.query, second.query],
+  suggestions: [first.suggestions, second.suggestions],
 });
 
 const mapDispatchToProps = dispatch => ({
-  updateFirstAddress: e => dispatch(updateFirstAddress(e.target.value)),
-  updateSecondAddress: e => dispatch(updateSecondAddress(e.target.value)),
+  clearAddress: (first, second) => dispatch(clearAddress(first, second)),
+  queryAddress: (first, second) => dispatch(queryAddress(first, second)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address);
