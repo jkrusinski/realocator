@@ -5,15 +5,15 @@ import {
 } from '../constants';
 
 export const updateFirstAddress = address => ({
-  action: UPDATE_FIRST_ADDRESS,
+  type: UPDATE_FIRST_ADDRESS,
   payload: address,
 });
 
 export const updateSecondAddress = address => ({
-  action: UPDATE_SECOND_ADDRESS,
+  type: UPDATE_SECOND_ADDRESS,
   payload: address,
 });
 
 export const clearAddresses = () => ({
-  action: CLEAR_ADDRESSES,
+  type: CLEAR_ADDRESSES,
 });
