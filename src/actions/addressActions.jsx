@@ -1,15 +1,16 @@
 import axios from 'axios';
 import {
+  UPDATE_ADDRESS_INPUT,
   UPDATE_ADDRESS_QUERY,
   UPDATE_ADDRESS_SUGGESTIONS,
   CLEAR_ADDRESS,
 } from '../constants';
 
-export const queryGooglePlaces = search => axios({
-  method: 'get',
-  url: 'http://localhost:3000/api/address',
-  params: { search },
-}).then(res => res.data.results);
+const updateAddressInput = (first, second) => ({
+  type: UPDATE_ADDRESS_INPUT,
+  first,
+  second,
+});
 
 const updateAddressQuery = (first, second) => ({
   type: UPDATE_ADDRESS_QUERY,
@@ -29,31 +30,53 @@ export const clearAddress = (first, second) => ({
   second,
 });
 
-export const queryAddress = (first, second) => ((dispatch) => {
-  if (first === '') {
-    dispatch(clearAddress(true, false));
-  }
+const queryGooglePlaces = search => axios({
+  method: 'get',
+  url: 'http://localhost:3000/api/address',
+  params: { search },
+}).then(res => res.data.results);
 
-  if (second === '') {
-    dispatch(clearAddress(false, true));
-  }
+// position must be 'first' or 'second'
+const makeRequest = (position, query, dispatch, getState) => {
+  queryGooglePlaces(query)
+    .then((results) => {
+      const { addresses: { [position]: { input } } } = getState();
 
-  // will update query for empty string (falsy)
-  dispatch(updateAddressQuery(first, second));
+      if (input === '') {
+        dispatch(clearAddress(position === 'first', position === 'second'));
+      } else if (input !== query) {
+        makeRequest(position, input, dispatch, getState);
+      } else {
+        dispatch(updateAddressSuggestions(
+          position === 'first' ? results : null,
+          position === 'second' ? results : null,
+        ));
+      }
+    })
+    .catch(console.error);
+};
 
-  if (first) {
-    queryGooglePlaces(first)
-      .then((results) => {
-        dispatch(updateAddressSuggestions(results, null));
-      })
-      .catch(console.error);
-  }
+export const queryAddress = (first, second) => ((dispatch, getState) => {
+  if (first === '' || second === '') {
+    dispatch(clearAddress(first === '', second === ''));
+  } else {
+    dispatch(updateAddressInput(first, second));
 
-  if (second) {
-    queryGooglePlaces(second)
-      .then((results) => {
-        dispatch(updateAddressSuggestions(null, results));
-      })
-      .catch(console.error);
+    const {
+      addresses: {
+        first: { requestActive: firstActive },
+        second: { requestAcitve: secondActive },
+      },
+    } = getState();
+
+    if (!firstActive && first) {
+      dispatch(updateAddressQuery(first, null));
+      makeRequest('first', first, dispatch, getState);
+    }
+
+    if (!secondActive && second) {
+      dispatch(updateAddressQuery(null, second));
+      makeRequest('second', second, dispatch, getState);
+    }
   }
 });
