@@ -69,6 +69,9 @@ export const queryAddress = (first, second) => ((dispatch, getState) => {
       },
     } = getState();
 
+    // if query is already active, do not initiate a new one
+    // the query callback will to a check to see if input has changed
+    // and will make a new request if needed
     if (!firstActive && first) {
       dispatch(updateAddressQuery(first, null));
       makeRequest('first', first, dispatch, getState);
