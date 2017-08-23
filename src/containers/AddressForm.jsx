@@ -4,7 +4,7 @@ import { clearAddress, queryAddress } from '../actions';
 import Address from '../components/Address';
 
 const mapStateToProps = ({ addresses: { first, second } }) => ({
-  queries: [first.query, second.query],
+  inputs: [first.input, second.input],
   suggestions: [first.suggestions, second.suggestions],
 });
 

@@ -1,10 +1,10 @@
 import React from 'react';
 import PropTypes from 'prop-types';
 
-const Address = ({ queries, suggestions, queryAddress }) => (
+const Address = ({ inputs, suggestions, queryAddress }) => (
   <form>
-    <input type="text" value={queries[0]} onChange={e => queryAddress(e.target.value, null)} />
-    <input type="text" value={queries[1]} onChange={e => queryAddress(null, e.target.value)} />
+    <input type="text" value={inputs[0]} onChange={e => queryAddress(e.target.value, null)} />
+    <input type="text" value={inputs[1]} onChange={e => queryAddress(null, e.target.value)} />
     <input type="submit" />
     <hr />
     <h1>suggestions 1</h1>
@@ -16,7 +16,7 @@ const Address = ({ queries, suggestions, queryAddress }) => (
 );
 
 Address.propTypes = {
-  queries: PropTypes.arrayOf(PropTypes.string).isRequired,
+  inputs: PropTypes.arrayOf(PropTypes.string).isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.array).isRequired,
   queryAddress: PropTypes.func.isRequired,
 };
