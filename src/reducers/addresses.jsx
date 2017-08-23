@@ -1,32 +1,38 @@
 import { combineReducers } from 'redux';
 import {
-  UPDATE_FIRST_ADDRESS,
-  UPDATE_SECOND_ADDRESS,
-  CLEAR_ADDRESSES,
+  UPDATE_ADDRESS_QUERY,
+  UPDATE_ADDRESS_SUGGESTIONS,
+  CLEAR_ADDRESS,
 } from '../constants';
 
-const first = (state = '', action) => {
+const defaultState = {
+  query: '',
+  suggestions: [],
+};
+
+const address = (state = defaultState, action) => {
   switch (action.type) {
-    case UPDATE_FIRST_ADDRESS:
-      return action.payload;
-    case CLEAR_ADDRESSES:
-      return '';
+    case UPDATE_ADDRESS_QUERY:
+      return action.payload
+        ? { ...state, query: action.payload }
+        : state;
+
+    case UPDATE_ADDRESS_SUGGESTIONS:
+      return action.payload
+        ? { ...state, suggestions: action.payload }
+        : state;
+
+    case CLEAR_ADDRESS:
+      return action.payload ? defaultState : state;
+
     default:
       return state;
   }
 };
 
-const second = (state = '', action) => {
-  switch (action.type) {
-    case UPDATE_SECOND_ADDRESS:
-      return action.payload;
-    case CLEAR_ADDRESSES:
-      return '';
-    default:
-      return state;
-  }
-};
-
-const addresses = combineReducers({ first, second });
+const addresses = (state = {}, action) => ({
+  first: address(state.first, { ...action, payload: action.first }),
+  second: address(state.second, { ...action, payload: action.second }),
+});
 
 export default addresses;
