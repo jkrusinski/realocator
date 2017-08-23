@@ -1,31 +1,31 @@
 import axios from 'axios';
 import {
-  UPDATE_ADDRESS_INPUT,
-  UPDATE_ADDRESS_QUERY,
-  UPDATE_ADDRESS_SUGGESTIONS,
-  CLEAR_ADDRESS,
+  UPDATE_SEARCH_INPUT,
+  UPDATE_SEARCH_QUERY,
+  UPDATE_SEARCH_SUGGESTIONS,
+  CLEAR_SEARCH,
 } from '../constants';
 
-const updateAddressInput = (first, second) => ({
-  type: UPDATE_ADDRESS_INPUT,
+const updateSearchInput = (first, second) => ({
+  type: UPDATE_SEARCH_INPUT,
   first,
   second,
 });
 
-const updateAddressQuery = (first, second) => ({
-  type: UPDATE_ADDRESS_QUERY,
+const updateSearchQuery = (first, second) => ({
+  type: UPDATE_SEARCH_QUERY,
   first,
   second,
 });
 
-const updateAddressSuggestions = (first, second) => ({
-  type: UPDATE_ADDRESS_SUGGESTIONS,
+const updateSearchSuggestions = (first, second) => ({
+  type: UPDATE_SEARCH_SUGGESTIONS,
   first,
   second,
 });
 
-export const clearAddress = (first, second) => ({
-  type: CLEAR_ADDRESS,
+export const clearSearch = (first, second) => ({
+  type: CLEAR_SEARCH,
   first,
   second,
 });
@@ -40,14 +40,14 @@ const queryGooglePlaces = search => axios({
 const makeRequest = (position, query, dispatch, getState) => {
   queryGooglePlaces(query)
     .then((results) => {
-      const { addresses: { [position]: { input } } } = getState();
+      const { search: { [position]: { input } } } = getState();
 
       if (input === '') {
-        dispatch(clearAddress(position === 'first', position === 'second'));
+        dispatch(clearSearch(position === 'first', position === 'second'));
       } else if (input !== query) {
         makeRequest(position, input, dispatch, getState);
       } else {
-        dispatch(updateAddressSuggestions(
+        dispatch(updateSearchSuggestions(
           position === 'first' ? results : null,
           position === 'second' ? results : null,
         ));
@@ -56,14 +56,14 @@ const makeRequest = (position, query, dispatch, getState) => {
     .catch(console.error);
 };
 
-export const queryAddress = (first, second) => ((dispatch, getState) => {
+export const search = (first, second) => ((dispatch, getState) => {
   if (first === '' || second === '') {
-    dispatch(clearAddress(first === '', second === ''));
+    dispatch(clearSearch(first === '', second === ''));
   } else {
-    dispatch(updateAddressInput(first, second));
+    dispatch(updateSearchInput(first, second));
 
     const {
-      addresses: {
+      search: {
         first: { requestActive: firstActive },
         second: { requestAcitve: secondActive },
       },
@@ -73,12 +73,12 @@ export const queryAddress = (first, second) => ((dispatch, getState) => {
     // the query callback will to a check to see if input has changed
     // and will make a new request if needed
     if (!firstActive && first) {
-      dispatch(updateAddressQuery(first, null));
+      dispatch(updateSearchQuery(first, null));
       makeRequest('first', first, dispatch, getState);
     }
 
     if (!secondActive && second) {
-      dispatch(updateAddressQuery(null, second));
+      dispatch(updateSearchQuery(null, second));
       makeRequest('second', second, dispatch, getState);
     }
   }

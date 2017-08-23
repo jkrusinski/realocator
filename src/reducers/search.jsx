@@ -1,8 +1,8 @@
 import {
-  UPDATE_ADDRESS_INPUT,
-  UPDATE_ADDRESS_QUERY,
-  UPDATE_ADDRESS_SUGGESTIONS,
-  CLEAR_ADDRESS,
+  UPDATE_SEARCH_INPUT,
+  UPDATE_SEARCH_QUERY,
+  UPDATE_SEARCH_SUGGESTIONS,
+  CLEAR_SEARCH,
 } from '../constants';
 
 const defaultState = {
@@ -14,22 +14,22 @@ const defaultState = {
 
 const address = (state = defaultState, action) => {
   switch (action.type) {
-    case UPDATE_ADDRESS_INPUT:
+    case UPDATE_SEARCH_INPUT:
       return action.payload
         ? { ...state, input: action.payload }
         : state;
 
-    case UPDATE_ADDRESS_QUERY:
+    case UPDATE_SEARCH_QUERY:
       return action.payload
         ? { ...state, query: action.payload, requestActive: true }
         : state;
 
-    case UPDATE_ADDRESS_SUGGESTIONS:
+    case UPDATE_SEARCH_SUGGESTIONS:
       return action.payload
         ? { ...state, suggestions: action.payload, requestActive: false }
         : state;
 
-    case CLEAR_ADDRESS:
+    case CLEAR_SEARCH:
       return action.payload ? defaultState : state;
 
     default:
@@ -37,9 +37,9 @@ const address = (state = defaultState, action) => {
   }
 };
 
-const addresses = (state = {}, action) => ({
+const search = (state = {}, action) => ({
   first: address(state.first, { ...action, payload: action.first }),
   second: address(state.second, { ...action, payload: action.second }),
 });
 
-export default addresses;
+export default search;

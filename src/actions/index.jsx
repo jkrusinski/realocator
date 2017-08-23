@@ -1,1 +1,1 @@
-export * from './addressActions';
+export * from './searchActions';
