@@ -3,10 +3,12 @@ import { SELECT_ADDRESS, CLEAR_ADDRESS } from '../constants';
 const address = (state = null, action) => {
   switch (action.type) {
     case SELECT_ADDRESS:
-      return action.payload;
+      return action.payload
+        ? action.payload
+        : state;
 
     case CLEAR_ADDRESS:
-      return null;
+      return state;
 
     default:
       return state;
