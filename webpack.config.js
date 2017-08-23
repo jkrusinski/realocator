@@ -9,7 +9,7 @@ module.exports = {
     path: BUILD_DIR,
     filename: 'bundle.js',
   },
-  devtool: 'eval',
+  devtool: 'source-map',
   resolve: {
     extensions: ['.js', '.jsx'],
   },
