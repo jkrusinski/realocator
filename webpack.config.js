@@ -10,6 +10,9 @@ module.exports = {
     filename: 'bundle.js',
   },
   devtool: 'eval',
+  resolve: {
+    extensions: ['.js', '.jsx'],
+  },
   module: {
     loaders: [
       {
