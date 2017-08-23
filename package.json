@@ -1,0 +1,39 @@
+{
+  "name": "realocator",
+  "version": "1.0.0",
+  "description": "Amne Engineering Challenge",
+  "main": "server.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1",
+    "start": "nodemon server.js --ignore src/",
+    "watch": "webpack -d --watch",
+    "build": "webpack -p"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/jkrusinski/realocator.git"
+  },
+  "author": "Jerry Krusinski",
+  "license": "UNLICENSED",
+  "bugs": {
+    "url": "https://github.com/jkrusinski/realocator/issues"
+  },
+  "homepage": "https://github.com/jkrusinski/realocator#readme",
+  "dependencies": {
+    "express": "^4.15.4"
+  },
+  "devDependencies": {
+    "babel-core": "^6.26.0",
+    "babel-loader": "^7.1.2",
+    "babel-preset-env": "^1.6.0",
+    "babel-preset-react": "^6.24.1",
+    "babel-preset-stage-0": "^6.24.1",
+    "eslint": "^4.5.0",
+    "eslint-config-airbnb": "^15.1.0",
+    "eslint-plugin-import": "^2.7.0",
+    "eslint-plugin-jsx-a11y": "^5.1.1",
+    "eslint-plugin-react": "^7.3.0",
+    "nodemon": "^1.11.0",
+    "webpack": "^3.5.5"
+  }
+}
