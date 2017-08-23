@@ -12,7 +12,7 @@ const defaultState = {
   suggestions: [],
 };
 
-const address = (state = defaultState, action) => {
+const query = (state = defaultState, action) => {
   switch (action.type) {
     case UPDATE_SEARCH_INPUT:
       return action.payload
@@ -38,8 +38,8 @@ const address = (state = defaultState, action) => {
 };
 
 const search = (state = {}, action) => ({
-  first: address(state.first, { ...action, payload: action.first }),
-  second: address(state.second, { ...action, payload: action.second }),
+  first: query(state.first, { ...action, payload: action.first }),
+  second: query(state.second, { ...action, payload: action.second }),
 });
 
 export default search;

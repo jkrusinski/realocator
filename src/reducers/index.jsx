@@ -1,2 +1,2 @@
 export search from './search';
-// export addresses from './addresses';
+export addresses from './addresses';

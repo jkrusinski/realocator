@@ -28,6 +28,26 @@ app.get('/api/address', (req, res, next) => {
     });
 });
 
+app.get('/api/place', (req, res, next) => {
+  const placeid = req.query.search;
+  const options = {
+    method: 'get',
+    url: 'https://maps.googleapis.com/maps/api/place/details/json',
+    params: {
+      key: GOOGLE_API_KEY,
+      placeid,
+    },
+  };
+
+  axios(options)
+    .then((response) => {
+      res.json(response.data);
+    })
+    .catch((err) => {
+      next(err);
+    });
+});
+
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, 'src/index.html'));
 });
