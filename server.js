@@ -10,6 +10,7 @@ app.use(bodyParser.json());
 
 app.use('/public', express.static(path.join(__dirname, 'src/public')));
 
+// I wanted to come back and factor out these server routes, but didn't have time
 app.get('/api/address', (req, res, next) => {
   const input = req.query.search;
   const options = {
