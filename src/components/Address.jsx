@@ -50,11 +50,9 @@ class Address extends Component {
   }
 
   onBlur() {
-    setTimeout(() => {
-      this.setState({
-        focus: false,
-      });
-    }, 400);
+    this.setState({
+      focus: false,
+    });
   }
 
   render() {

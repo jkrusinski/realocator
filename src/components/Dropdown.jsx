@@ -1,4 +1,4 @@
-import React from 'react';
+import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 import injectSheet from 'react-jss';
 
@@ -13,25 +13,55 @@ const styles = {
   },
 };
 
-const Dropdown = ({ suggestions, selectAddress, focus, classes }) => {
-  if (focus && suggestions.length) {
-    return (
-      <ul className={classes.list}>
-        {suggestions.map(({ description, place_id: placeId }) => (
-          <a
-            onClick={() => selectAddress(placeId)}
-            role="button"
-            tabIndex="-1"
-            key={placeId}
-          >
-            <li>{description}</li>
-          </a>
-        ))}
-      </ul>
-    );
+class Dropdown extends Component {
+  constructor(props) {
+    super(props);
+
+    this.state = {
+      hover: false,
+    };
+
+    this.onMouseEnter = this.onMouseEnter.bind(this);
+    this.onMouseLeave = this.onMouseLeave.bind(this);
   }
-  return null;
-};
+
+  onMouseEnter() {
+    this.setState({
+      hover: true,
+    });
+  }
+
+  onMouseLeave() {
+    this.setState({
+      hover: false,
+    });
+  }
+
+  render() {
+    const { suggestions, selectAddress, focus, classes } = this.props;
+    if ((focus || this.state.hover) && suggestions.length) {
+      return (
+        <ul
+          className={classes.list}
+          onMouseEnter={this.onMouseEnter}
+          onMouseLeave={this.onMouseLeave}
+        >
+          {suggestions.map(({ description, place_id: placeId }) => (
+            <a
+              onClick={() => selectAddress(placeId)}
+              role="button"
+              tabIndex="-1"
+              key={placeId}
+            >
+              <li>{description}</li>
+            </a>
+          ))}
+        </ul>
+      );
+    }
+    return null;
+  }
+}
 
 Dropdown.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.object).isRequired,
