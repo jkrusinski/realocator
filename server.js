@@ -19,6 +19,7 @@ app.get('/api/address', (req, res, next) => {
     params: {
       key: GOOGLE_API_KEY,
       location: '30.2672,-97.7431',
+      radius: '50000',
       input,
     },
   };
