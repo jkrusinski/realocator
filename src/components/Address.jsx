@@ -16,6 +16,7 @@ const styles = {
   input: {
     marginTop: '10px',
     fontSize: '18px',
+    fontFamily: 'inherit',
     padding: '5px',
     borderBottomLeftRadius: '5px',
     borderBottomRightRadius: '5px',

@@ -8,6 +8,7 @@ const styles = {
   container: {
     display: 'flex',
     justifyContent: 'space-evenly',
+    marginTop: '30px',
   },
 };
 
