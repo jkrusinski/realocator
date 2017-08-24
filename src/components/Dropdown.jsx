@@ -14,7 +14,7 @@ const styles = {
     overflow: 'hidden',
   },
   item: {
-    padding: '5px',
+    padding: '7px',
     display: 'block',
     '&:hover': {
       backgroundColor: 'violet',
