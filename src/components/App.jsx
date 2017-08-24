@@ -4,7 +4,7 @@ import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
 import Results from './Results';
 
-const Address = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
+const App = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
   <div>
     <h1>Address 1</h1>
     { addresses.first ? addresses.first.name : null }
@@ -23,7 +23,7 @@ const Address = ({ inputs, suggestions, search, selectAddress, addresses, fetchR
   </div>
 );
 
-Address.propTypes = {
+App.propTypes = {
   inputs: PropTypes.arrayOf(PropTypes.string).isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.array).isRequired,
   search: PropTypes.func.isRequired,
@@ -34,4 +34,4 @@ Address.propTypes = {
   }).isRequired,
 };
 
-export default Address;
+export default App;
