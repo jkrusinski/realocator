@@ -8,7 +8,7 @@ const address = (state = null, action) => {
         : state;
 
     case CLEAR_ADDRESS:
-      return state;
+      return null;
 
     default:
       return state;

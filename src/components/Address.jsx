@@ -4,12 +4,13 @@ import PropTypes from 'prop-types';
 import Dropdown from './Dropdown';
 import Results from './Results';
 
-const Address = ({ inputs, suggestions, search, selectAddress, addresses, click, results }) => (
+const Address = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
   <div>
     <h1>Address 1</h1>
     { addresses.first ? addresses.first.name : null }
     <h1>Address 2</h1>
     { addresses.second ? addresses.second.name : null }
+    <button onClick={clearAddresses}>Clear</button>
     <input type="text" value={inputs[0]} onChange={e => search(e.target.value, null)} />
     <input type="text" value={inputs[1]} onChange={e => search(null, e.target.value)} />
     <h1>suggestions 1</h1>
@@ -17,7 +18,7 @@ const Address = ({ inputs, suggestions, search, selectAddress, addresses, click,
     <h1>suggestions 2</h1>
     <Dropdown position="second" suggestions={suggestions[1]} selectAddress={selectAddress} />
     <h1>Results</h1>
-    <button onClick={click}>Submit</button>
+    <button onClick={fetchResults}>Search Realtors</button>
     <Results data={results} />
   </div>
 );

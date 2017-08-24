@@ -1,5 +1,5 @@
 import { connect } from 'react-redux';
-import { search, fetchAddress, fetchResults } from '../actions';
+import { search, fetchAddress, fetchResults, clearAddress } from '../actions';
 
 import Address from '../components/Address';
 
@@ -16,7 +16,8 @@ const mapDispatchToProps = dispatch => ({
     position === 'first' ? placeId : null,
     position === 'second' ? placeId : null,
   )),
-  click: () => dispatch(fetchResults()),
+  fetchResults: () => dispatch(fetchResults()),
+  clearAddresses: () => dispatch(clearAddress(true, true)),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address);

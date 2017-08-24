@@ -5,7 +5,7 @@ export const clearResults = () => ({
   type: CLEAR_RESULTS,
 });
 
-export const updateResults = results => ({
+const updateResults = results => ({
   type: UPDATE_RESULTS,
   payload: results,
 });
