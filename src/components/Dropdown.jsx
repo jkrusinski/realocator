@@ -4,12 +4,25 @@ import injectSheet from 'react-jss';
 
 const styles = {
   list: {
-    backgroundColor: 'white',
     position: 'absolute',
     listStyle: 'none',
-    border: '1px black solid',
     margin: '0',
     padding: '0',
+    borderRadius: '5px',
+    backgroundColor: 'pink',
+    marginTop: '2px',
+    overflow: 'hidden',
+  },
+  item: {
+    padding: '5px',
+    display: 'block',
+    '&:hover': {
+      backgroundColor: 'violet',
+      cursor: 'pointer',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
   },
 };
 
@@ -52,6 +65,7 @@ class Dropdown extends Component {
               role="button"
               tabIndex="-1"
               key={placeId}
+              className={classes.item}
             >
               <li>{description}</li>
             </a>
