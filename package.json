@@ -21,6 +21,7 @@
   "homepage": "https://github.com/jkrusinski/realocator#readme",
   "dependencies": {
     "axios": "^0.16.2",
+    "body-parser": "^1.17.2",
     "express": "^4.15.4",
     "prop-types": "^15.5.10",
     "react": "^15.6.1",
