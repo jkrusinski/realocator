@@ -1,5 +1,6 @@
 import axios from 'axios';
 import { SELECT_ADDRESS, CLEAR_ADDRESS } from '../constants';
+import { clearSearch } from './searchActions.jsx';
 
 const selectAddress = (first, second) => ({
   type: SELECT_ADDRESS,
@@ -26,6 +27,7 @@ const makeRequest = (position, placeId, dispatch) => {
         position === 'first' ? result : null,
         position === 'second' ? result : null,
       ));
+      dispatch(clearSearch(position === 'first', position === 'second'));
     })
     .catch(console.error);
 };

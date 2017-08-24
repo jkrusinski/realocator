@@ -3,11 +3,12 @@ import PropTypes from 'prop-types';
 
 const Dropdown = ({ position, suggestions, selectAddress }) => (
   <ul>
-    {suggestions.map(({ description, place_id }) => (
+    {suggestions.map(({ description, place_id: placeId }) => (
       <a
-        onClick={() => selectAddress(position, place_id)}
+        onClick={() => selectAddress(position, placeId)}
         role="button"
         tabIndex="-1"
+        key={placeId}
       >
         <li>{description}</li>
       </a>
