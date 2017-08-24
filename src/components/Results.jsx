@@ -31,7 +31,7 @@ const Results = ({ data, classes }) => (
       <h1 className={classes.header}>Results</h1>
       <ul className={classes.list}>
         { data.map(({ name, place_id: placeId, vicinity }) => (
-          <ResultItem key={placeId} name={name} vicinity={vicinity} />
+          <ResultItem key={placeId} name={name} vicinity={vicinity} placeId={placeId} />
         ))}
       </ul>
     </div>
