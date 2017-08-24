@@ -32,15 +32,19 @@ export const fetchResults = () => (dispatch, getState) => {
 
   if (addresses.length) {
     queryRealtors(addresses)
+      // given the time, I would love to refactor this into something more readable and efficient
       .then((results) => {
+        // creates an array of objects with the result and its summed distance
         const summedResults = results
           .reduce((acc, next) => acc.concat(next.map((result) => {
+            // get distance to first address, if exists
             const firstDistance = first
               ? getDistance(
                 [first.geometry.location.lat, first.geometry.location.lng],
                 [result.geometry.location.lat, result.geometry.location.lng],
               ) : 0;
 
+            // get distance to second address, if exists
             const secondDistance = second
               ? getDistance(
                 [second.geometry.location.lat, second.geometry.location.lng],
@@ -55,6 +59,7 @@ export const fetchResults = () => (dispatch, getState) => {
             };
           })), []);
 
+        // filters out any repeat results that may have come from the two addresses
         const uniqueResultsObject = summedResults.reduce((acc, next) => {
           if (!acc[next.result.place_id]) {
             acc[next.result.place_id] = next;
@@ -62,8 +67,10 @@ export const fetchResults = () => (dispatch, getState) => {
           return acc;
         }, {});
 
+        // turns the previous object back into an array
         const uniqueResults = Object.values(uniqueResultsObject);
 
+        // sorts the array based on distance
         const sortedResults = uniqueResults.sort((a, b) => {
           if (a.distanceSum < b.distanceSum) {
             return -1;
@@ -76,6 +83,7 @@ export const fetchResults = () => (dispatch, getState) => {
           return 0;
         });
 
+        // the closest 10 agencies, sorted
         const topTenResults = sortedResults.slice(0, 10).map(item => item.result);
 
         dispatch(updateResults(topTenResults));
