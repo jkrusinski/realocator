@@ -1,6 +1,6 @@
 import axios from 'axios';
 import { SELECT_ADDRESS, CLEAR_ADDRESS } from '../constants';
-import { clearSearch } from './searchActions.jsx';
+import { clearSearch } from './searchActions';
 
 const selectAddress = (first, second) => ({
   type: SELECT_ADDRESS,
