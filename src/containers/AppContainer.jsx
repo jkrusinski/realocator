@@ -12,10 +12,7 @@ const mapStateToProps = ({ search: { first, second }, addresses, results }) => (
 
 const mapDispatchToProps = dispatch => ({
   search: (first, second) => dispatch(search(first, second)),
-  selectAddress: (position, placeId) => dispatch(fetchAddress(
-    position === 'first' ? placeId : null,
-    position === 'second' ? placeId : null,
-  )),
+  selectAddress: (first, second) => dispatch(fetchAddress(first, second)),
   fetchResults: () => dispatch(fetchResults()),
   clearAddresses: () => dispatch(clearAddress(true, true)),
 });

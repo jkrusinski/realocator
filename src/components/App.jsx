@@ -8,17 +8,15 @@ import Addresses from './Addresses';
 const App = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
   <div>
     <Addresses
-      data={addresses}
+      addresses={addresses}
       clearAddresses={clearAddresses}
       inputs={inputs}
       search={search}
+      fetchResults={fetchResults}
+      suggestions={suggestions}
+      selectAddress={selectAddress}
     />
-    <h1>suggestions 1</h1>
-    <Dropdown position="first" suggestions={suggestions[0]} selectAddress={selectAddress} />
-    <h1>suggestions 2</h1>
-    <Dropdown position="second" suggestions={suggestions[1]} selectAddress={selectAddress} />
-    <h1>Results</h1>
-    <button onClick={fetchResults}>Search Realtors</button>
+
     <Results data={results} />
   </div>
 );
