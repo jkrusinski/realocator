@@ -19,7 +19,7 @@ const Addresses = ({ addresses: { first, second }, clearAddresses, inputs, searc
   <div>
     <div className={classes.container}>
       <Address
-        name={first ? first.name : null}
+        name={first ? first.name : ''}
         title={'Address 1'}
         input={inputs[0]}
         search={query => search(query, null)}
@@ -27,7 +27,7 @@ const Addresses = ({ addresses: { first, second }, clearAddresses, inputs, searc
         suggestions={suggestions[0]}
       />
       <Address
-        name={second ? second.name : null}
+        name={second ? second.name : ''}
         title={'Address 2'}
         input={inputs[1]}
         search={query => search(null, query)}
