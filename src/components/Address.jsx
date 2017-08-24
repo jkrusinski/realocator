@@ -1,7 +1,35 @@
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 
 import Dropdown from './Dropdown';
+
+const styles = {
+  box: {
+    width: '300px',
+    backgroundColor: 'violet',
+    display: 'flex',
+    flexDirection: 'column',
+    borderRadius: '5px',
+    textAlign: 'center',
+  },
+  input: {
+    marginTop: '10px',
+    fontSize: '18px',
+    padding: '5px',
+    borderBottomLeftRadius: '5px',
+    borderBottomRightRadius: '5px',
+    border: 'none',
+    backgroundColor: 'pink',
+    '&:focus, &:active': {
+      outline: 'none',
+      backgroundColor: 'palevioletred',
+    },
+  },
+  selected: {
+    fontWeight: 'bold',
+  },
+};
 
 class Address extends Component {
   constructor(props) {
@@ -30,18 +58,21 @@ class Address extends Component {
   }
 
   render() {
-    const { name, title, input, search, suggestions, selectAddress } = this.props;
+    const { classes, name, title, input, search, suggestions, selectAddress } = this.props;
     return (
       <div>
-        <h1>{title}</h1>
-        <div>{name || 'Search below...'}</div>
-        <input
-          type="text"
-          value={input}
-          onChange={e => search(e.target.value)}
-          onFocus={this.onFocus}
-          onBlur={this.onBlur}
-        />
+        <div className={classes.box}>
+          <h1>{title}</h1>
+          <div className={name ? classes.selected : null}>{name || 'Search below...'}</div>
+          <input
+            type="text"
+            value={input}
+            onChange={e => search(e.target.value)}
+            onFocus={this.onFocus}
+            onBlur={this.onBlur}
+            className={classes.input}
+          />
+        </div>
         <Dropdown
           suggestions={suggestions}
           selectAddress={selectAddress}
@@ -59,6 +90,7 @@ Address.propTypes = {
   search: PropTypes.func.isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectAddress: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-export default Address;
+export default injectSheet(styles)(Address);

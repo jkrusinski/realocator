@@ -24,6 +24,13 @@ const styles = {
     '&:hover': {
       cursor: 'pointer',
     },
+    '&:active': {
+      outline: 'none',
+      backgroundColor: 'limegreen',
+    },
+    '&:focus': {
+      outline: 'none',
+    },
   },
 };
 
