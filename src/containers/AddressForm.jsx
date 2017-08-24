@@ -1,12 +1,13 @@
 import { connect } from 'react-redux';
-import { search, fetchAddress } from '../actions';
+import { search, fetchAddress, fetchResults } from '../actions';
 
 import Address from '../components/Address';
 
-const mapStateToProps = ({ search: { first, second }, addresses }) => ({
+const mapStateToProps = ({ search: { first, second }, addresses, results }) => ({
   inputs: [first.input, second.input],
   suggestions: [first.suggestions, second.suggestions],
   addresses,
+  results,
 });
 
 const mapDispatchToProps = dispatch => ({
@@ -15,6 +16,7 @@ const mapDispatchToProps = dispatch => ({
     position === 'first' ? placeId : null,
     position === 'second' ? placeId : null,
   )),
+  click: () => dispatch(fetchResults()),
 });
 
 export default connect(mapStateToProps, mapDispatchToProps)(Address);

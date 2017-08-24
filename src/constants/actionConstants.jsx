@@ -5,3 +5,6 @@ export const CLEAR_SEARCH = 'CLEAR_SEARCH';
 
 export const SELECT_ADDRESS = 'SELECT_ADDRESS';
 export const CLEAR_ADDRESS = 'CLEAR_ADDRESS';
+
+export const UPDATE_RESULTS = 'UPDATE_RESULTS';
+export const CLEAR_RESULTS = 'CLEAR_RESULTS';

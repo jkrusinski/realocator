@@ -1,8 +1,13 @@
 import axios from 'axios';
-import { CLEAR_RESULTS } from '../constants';
+import { CLEAR_RESULTS, UPDATE_RESULTS } from '../constants';
 
 export const clearResults = () => ({
   type: CLEAR_RESULTS,
+});
+
+export const updateResults = results => ({
+  type: UPDATE_RESULTS,
+  payload: results,
 });
 
 const queryRealtors = data => axios({
@@ -69,7 +74,7 @@ export const fetchResults = () => (dispatch, getState) => {
 
         const topTenResults = sortedResults.slice(0, 10).map(item => item.result);
 
-        console.log(topTenResults);
+        dispatch(updateResults(topTenResults));
       })
       .catch(console.error);
   }
