@@ -35,14 +35,18 @@ export const fetchResults = () => (dispatch, getState) => {
       .then((results) => {
         const summedResults = results
           .reduce((acc, next) => acc.concat(next.map((result) => {
-            const firstDistance = getDistance(
-              [first.geometry.location.lat, first.geometry.location.lng],
-              [result.geometry.location.lat, result.geometry.location.lng],
-            );
-            const secondDistance = getDistance(
-              [second.geometry.location.lat, second.geometry.location.lng],
-              [result.geometry.location.lat, result.geometry.location.lng],
-            );
+            const firstDistance = first
+              ? getDistance(
+                [first.geometry.location.lat, first.geometry.location.lng],
+                [result.geometry.location.lat, result.geometry.location.lng],
+              ) : 0;
+
+            const secondDistance = second
+              ? getDistance(
+                [second.geometry.location.lat, second.geometry.location.lng],
+                [result.geometry.location.lat, result.geometry.location.lng],
+              ) : 0;
+
             const distanceSum = firstDistance + secondDistance;
 
             return {

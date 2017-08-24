@@ -1,5 +1,3 @@
-/* global document */
-
 import React, { Component } from 'react';
 import PropTypes from 'prop-types';
 
@@ -28,7 +26,7 @@ class Address extends Component {
       this.setState({
         focus: false,
       });
-    }, 200);
+    }, 400);
   }
 
   render() {
