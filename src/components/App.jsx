@@ -3,13 +3,11 @@ import PropTypes from 'prop-types';
 
 import Dropdown from './Dropdown';
 import Results from './Results';
+import Addresses from './Addresses';
 
 const App = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
   <div>
-    <h1>Address 1</h1>
-    { addresses.first ? addresses.first.name : null }
-    <h1>Address 2</h1>
-    { addresses.second ? addresses.second.name : null }
+    <Addresses data={addresses} />
     <button onClick={clearAddresses}>Clear</button>
     <input type="text" value={inputs[0]} onChange={e => search(e.target.value, null)} />
     <input type="text" value={inputs[1]} onChange={e => search(null, e.target.value)} />
