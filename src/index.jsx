@@ -9,7 +9,7 @@ import thunk from 'redux-thunk';
 import * as reducers from './reducers';
 import { env } from '../config';
 
-import App from './components/App';
+import AppContainer from './containers/AppContainer';
 
 /* eslint-disable no-underscore-dangle */
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__
@@ -23,7 +23,7 @@ const store = createStore(reducer, composeEnhancers(applyMiddleware(thunk)));
 
 render(
   <Provider store={store}>
-    <App />
+    <AppContainer />
   </Provider>,
   document.getElementById('app'),
 );

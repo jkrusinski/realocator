@@ -1,7 +1,7 @@
 import { connect } from 'react-redux';
 import { search, fetchAddress, fetchResults, clearAddress } from '../actions';
 
-import Address from '../components/Address';
+import App from '../components/App';
 
 const mapStateToProps = ({ search: { first, second }, addresses, results }) => ({
   inputs: [first.input, second.input],
@@ -20,4 +20,4 @@ const mapDispatchToProps = dispatch => ({
   clearAddresses: () => dispatch(clearAddress(true, true)),
 });
 
-export default connect(mapStateToProps, mapDispatchToProps)(Address);
+export default connect(mapStateToProps, mapDispatchToProps)(App);
