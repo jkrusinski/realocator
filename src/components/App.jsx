@@ -3,32 +3,20 @@ import PropTypes from 'prop-types';
 
 import Results from './Results';
 import Addresses from './Addresses';
+import Actions from './Actions';
 
-const App = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
+const App = props => (
   <div>
-    <Addresses
-      addresses={addresses}
-      clearAddresses={clearAddresses}
-      inputs={inputs}
-      search={search}
-      fetchResults={fetchResults}
-      suggestions={suggestions}
-      selectAddress={selectAddress}
-    />
-
-    <Results data={results} />
+    <Addresses {...props} />
+    <Actions fetchResults={props.fetchResults} clearAddresses={props.clearAddresses} />
+    <Results data={props.results} />
   </div>
 );
 
 App.propTypes = {
-  inputs: PropTypes.arrayOf(PropTypes.string).isRequired,
-  suggestions: PropTypes.arrayOf(PropTypes.array).isRequired,
-  search: PropTypes.func.isRequired,
-  selectAddress: PropTypes.func.isRequired,
-  addresses: PropTypes.shape({
-    first: PropTypes.object,
-    second: PropTypes.object,
-  }).isRequired,
+  results: PropTypes.arrayOf(PropTypes.object).isRequired,
+  fetchResults: PropTypes.func.isRequired,
+  clearAddresses: PropTypes.func.isRequired,
 };
 
 export default App;

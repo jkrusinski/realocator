@@ -53,7 +53,8 @@ const Results = ({ data, classes }) => (
         ) : (
           <div className={classes.instructions}>
             <p>Welcome to REALocator!</p>
-            <p>Find the closest Real Estate Agencies between two locations. Start by entering addresses into the fields above.</p>
+            <p>Find the closest Real Estate Agencies between two locations.</p>
+            <p>Start by entering addresses into the fields above.</p>
           </div>
         )
       }
