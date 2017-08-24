@@ -1,8 +1,20 @@
 import React from 'react';
 import PropTypes from 'prop-types';
+import injectSheet from 'react-jss';
 
-const Dropdown = ({ suggestions, selectAddress }) => (
-  <ul>
+const styles = {
+  list: {
+    backgroundColor: 'white',
+    position: 'absolute',
+    listStyle: 'none',
+    border: '1px black solid',
+    margin: '0',
+    padding: '0',
+  },
+};
+
+const Dropdown = ({ suggestions, selectAddress, classes }) => (
+  <ul className={classes.list}>
     {suggestions.map(({ description, place_id: placeId }) => (
       <a
         onClick={() => selectAddress(placeId)}
@@ -19,6 +31,7 @@ const Dropdown = ({ suggestions, selectAddress }) => (
 Dropdown.propTypes = {
   suggestions: PropTypes.arrayOf(PropTypes.object).isRequired,
   selectAddress: PropTypes.func.isRequired,
+  classes: PropTypes.objectOf(PropTypes.string).isRequired,
 };
 
-module.exports = Dropdown;
+export default injectSheet(styles)(Dropdown);
