@@ -7,8 +7,7 @@ import Addresses from './Addresses';
 
 const App = ({ inputs, suggestions, search, selectAddress, addresses, fetchResults, results, clearAddresses }) => (
   <div>
-    <Addresses data={addresses} />
-    <button onClick={clearAddresses}>Clear</button>
+    <Addresses data={addresses} clearAddresses={clearAddresses} />
     <input type="text" value={inputs[0]} onChange={e => search(e.target.value, null)} />
     <input type="text" value={inputs[1]} onChange={e => search(null, e.target.value)} />
     <h1>suggestions 1</h1>
