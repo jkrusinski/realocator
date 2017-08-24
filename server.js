@@ -89,6 +89,6 @@ app.use((err, req, res, next) => { // eslint-disable-line
   res.status(err.status || 500).send(err.message);
 });
 
-app.listen(process.env.PORT || 3000, () => {
-  console.log(`Process listening on port ${process.env.PORT || 3000}`); // eslint-disable-line
+app.listen(process.env.PORT || 3333, () => {
+  console.log(`Process listening on port ${process.env.PORT || 3333}`); // eslint-disable-line
 });
