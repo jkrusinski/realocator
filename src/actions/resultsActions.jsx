@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { CLEAR_RESULTS, UPDATE_RESULTS } from '../constants';
+import { CLEAR_RESULTS, UPDATE_RESULTS, HOST } from '../constants';
 
 export const clearResults = () => ({
   type: CLEAR_RESULTS,
@@ -12,7 +12,7 @@ const updateResults = results => ({
 
 const queryRealtors = data => axios({
   method: 'post',
-  url: 'http://localhost:3000/api/realtors',
+  url: `${HOST}/api/realtors`,
   data,
 }).then(response => response.data);
 

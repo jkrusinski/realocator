@@ -4,6 +4,7 @@ import {
   UPDATE_SEARCH_QUERY,
   UPDATE_SEARCH_SUGGESTIONS,
   CLEAR_SEARCH,
+  HOST,
 } from '../constants';
 
 const updateSearchInput = (first, second) => ({
@@ -32,7 +33,7 @@ export const clearSearch = (first, second) => ({
 
 const queryGooglePlaces = search => axios({
   method: 'get',
-  url: 'http://localhost:3000/api/address',
+  url: `${HOST}/api/address`,
   params: { search },
 }).then(res => res.data.predictions);
 

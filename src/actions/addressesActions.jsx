@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { SELECT_ADDRESS, CLEAR_ADDRESS } from '../constants';
+import { SELECT_ADDRESS, CLEAR_ADDRESS, HOST } from '../constants';
 import { clearSearch } from './searchActions';
 
 const selectAddress = (first, second) => ({
@@ -16,7 +16,7 @@ export const clearAddress = (first, second) => ({
 
 const queryGooglePlaceId = search => axios({
   method: 'get',
-  url: 'http://localhost:3000/api/place',
+  url: `${HOST}/api/place`,
   params: { search },
 }).then(response => response.data.result);
 
