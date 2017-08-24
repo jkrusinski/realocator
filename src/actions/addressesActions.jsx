@@ -29,7 +29,7 @@ const makeRequest = (position, placeId, dispatch) => {
       ));
       dispatch(clearSearch(position === 'first', position === 'second'));
     })
-    .catch(console.error);
+    .catch(console.error); // eslint-disable-line
 };
 
 export const fetchAddress = (first, second) => (dispatch) => {

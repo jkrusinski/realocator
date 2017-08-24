@@ -47,10 +47,8 @@ Addresses.propTypes = {
     second: PropTypes.object,
   }).isRequired,
   classes: PropTypes.objectOf(PropTypes.string).isRequired,
-  clearAddresses: PropTypes.func.isRequired,
   inputs: PropTypes.arrayOf(PropTypes.string).isRequired,
   search: PropTypes.func.isRequired,
-  fetchResults: PropTypes.func.isRequired,
   suggestions: PropTypes.arrayOf(PropTypes.array).isRequired,
   selectAddress: PropTypes.func.isRequired,
 };

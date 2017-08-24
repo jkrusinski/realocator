@@ -80,6 +80,6 @@ export const fetchResults = () => (dispatch, getState) => {
 
         dispatch(updateResults(topTenResults));
       })
-      .catch(console.error);
+      .catch(console.error); // eslint-disable-line
   }
 };
